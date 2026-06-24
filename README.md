@@ -39,7 +39,19 @@ The application UI strictly inherits the premium, understated design identity of
 
 ## 🛠️ Local Development & Deployment
 
-The codebase is built entirely with vanilla optimization to load instantaneously over low-bandwidth environments.
+The codebase is built entirely with vanilla HTML, CSS, and JavaScript to load instantaneously over low-bandwidth environments.
+
+```
+ember/
+├── index.html        # PWA shell & tab router
+├── ember.css         # Zero-notification UI framework
+├── manifest.json     # Application identity
+├── sw.js             # Cache-first service worker
+└── assets/
+    ├── ember-logo.svg
+    ├── icon-192.png
+    └── icon-512.png
+```
 
 To launch a local sandbox environment:
 ```bash

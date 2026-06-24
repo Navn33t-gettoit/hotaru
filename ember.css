@@ -1,97 +1,58 @@
-/* Ember PWA — Digital Mirror prototype */
+:root {
+  --coal: #1c1814;
+  --ink: #2a2a24;
+  --sumi-green: #3a4a3f;
+  --sage: #6f7b62;
+  --sage-light: #9aa08c;
+  --ember: #c06b3e;
+  --ember-glow: #d98a3e;
+  --rice-cream: #f4eee2;
+  --surface: #1e1b17;
+  --border: rgba(244, 238, 226, 0.08);
+  --text: #f4eee2;
+  --text-muted: #8a8466;
+  --text-dim: #5c5749;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
 
 body.ember-body {
   font-family: var(--font-sans);
   background: var(--coal);
-  color: var(--ember-app-text);
+  color: var(--text);
+  min-height: 100dvh;
   overflow: hidden;
-  height: 100dvh;
-  width: 100vw;
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Stage & Phone Frame ─── */
-
-.ember-stage {
+.ember-shell {
   display: flex;
-  align-items: center;
   justify-content: center;
   min-height: 100dvh;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58, 74, 63, 0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 80% 90%, rgba(192, 107, 62, 0.06) 0%, transparent 60%),
-    var(--coal);
+  background: var(--coal);
 }
-
-.ember-device {
-  width: 100%;
-  max-width: 390px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.ember-device__frame {
-  width: 100%;
-  aspect-ratio: 9 / 19.5;
-  max-height: calc(100dvh - 3rem);
-  padding: 10px;
-  border-radius: 44px;
-  background: linear-gradient(155deg, #2e2a26 0%, #141210 55%, #1a1814 100%);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-    0 32px 80px rgba(0, 0, 0, 0.55),
-    0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.ember-device__notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 34%;
-  height: 26px;
-  background: #141210;
-  border-radius: 0 0 18px 18px;
-  z-index: 20;
-  pointer-events: none;
-}
-
-.ember-device__screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 36px;
-  overflow: hidden;
-  background: var(--ember-app-bg);
-  display: flex;
-  flex-direction: column;
-}
-
-.ember-device__brand {
-  font-family: var(--font-serif);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--ember-app-dim);
-  text-align: center;
-}
-
-.ember-device__brand span {
-  color: var(--ember-app-muted);
-}
-
-/* ─── App Shell ─── */
 
 .ember-app {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-height: 0;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  background: var(--coal);
   position: relative;
 }
 
@@ -107,14 +68,14 @@ body.ember-body {
   inset: 0;
   display: flex;
   flex-direction: column;
-  padding: clamp(2.75rem, 8vw, 3.25rem) 1.35rem 0;
+  padding: max(2.5rem, env(safe-area-inset-top, 2.5rem)) 1.35rem 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(6px);
+  transform: translateY(8px);
   transition:
-    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -133,14 +94,12 @@ body.ember-body {
 
 .ember-view__scroll {
   flex: 1;
-  padding-bottom: 1rem;
+  padding-bottom: 1.25rem;
 }
-
-/* ─── Typography ─── */
 
 .ember-greeting {
   font-family: var(--font-serif);
-  font-size: clamp(1.65rem, 5.5vw, 1.85rem);
+  font-size: clamp(1.65rem, 5.5vw, 1.9rem);
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -164,21 +123,9 @@ body.ember-body {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
   margin-bottom: 1.35rem;
 }
-
-.ember-meta {
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ember-app-dim);
-  margin-bottom: 0.5rem;
-}
-
-/* ─── Section 1: Status ─── */
 
 .ember-status-block {
   display: flex;
@@ -231,16 +178,13 @@ body.ember-body {
 
 .ember-status-block__label em {
   font-style: normal;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
   font-family: var(--font-sans);
   font-size: 0.82rem;
   display: block;
   margin-top: 0.2rem;
   font-weight: 400;
-  letter-spacing: 0.01em;
 }
-
-/* Status toggle pills */
 
 .ember-pills {
   display: flex;
@@ -248,8 +192,8 @@ body.ember-body {
   margin-bottom: 2rem;
   padding: 3px;
   border-radius: 999px;
-  background: var(--ember-app-surface);
-  border: 1px solid var(--ember-app-border);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .ember-pill {
@@ -262,17 +206,14 @@ body.ember-body {
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
   cursor: pointer;
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
   white-space: nowrap;
 }
 
 .ember-pill:hover {
-  color: var(--ember-app-text);
+  color: var(--text);
 }
 
 .ember-pill.is-active {
@@ -286,18 +227,16 @@ body.ember-body {
   outline-offset: 2px;
 }
 
-/* Presence ledger */
-
 .ember-ledger__label {
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
   margin-bottom: 0.85rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--ember-app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .ember-ledger__list {
@@ -312,7 +251,7 @@ body.ember-body {
   font-size: 0.88rem;
   font-weight: 400;
   line-height: 1.45;
-  color: var(--ember-app-text);
+  color: var(--text);
 }
 
 .ember-ledger__item strong {
@@ -321,20 +260,17 @@ body.ember-body {
 }
 
 .ember-ledger__item span {
-  color: var(--ember-app-dim);
+  color: var(--text-dim);
 }
-
-/* ─── Section 2: The Board ─── */
 
 .ember-board {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .ember-card {
   padding: 1.1rem 0;
-  border-bottom: 1px solid var(--ember-app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .ember-card:first-of-type {
@@ -375,7 +311,7 @@ body.ember-body {
 
 .ember-card__byline span {
   font-weight: 400;
-  color: var(--ember-app-dim);
+  color: var(--text-dim);
 }
 
 .ember-card__body {
@@ -383,7 +319,7 @@ body.ember-body {
   font-size: 0.84rem;
   font-weight: 300;
   line-height: 1.55;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
 }
 
 .ember-cta {
@@ -391,35 +327,25 @@ body.ember-body {
   width: 100%;
   margin-top: 1.5rem;
   padding: 0.85rem 1rem;
-  border: 1px solid rgba(58, 74, 63, 0.5);
+  border: 1px solid rgba(58, 74, 63, 0.6);
   border-radius: 4px;
   background: var(--sumi-green);
   color: var(--rice-cream);
   font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
   text-align: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .ember-cta:hover {
   background: #44554a;
-  border-color: rgba(58, 74, 63, 0.7);
 }
 
 .ember-cta:focus-visible {
   outline: 2px solid var(--ember-glow);
   outline-offset: 2px;
-}
-
-/* ─── Section 3: Spaces Grid ─── */
-
-.ember-timetable {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
 }
 
 .ember-timetable__header {
@@ -428,7 +354,7 @@ body.ember-body {
   gap: 0.35rem;
   margin-bottom: 0.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--ember-app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .ember-timetable__header span {
@@ -437,7 +363,7 @@ body.ember-body {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -458,10 +384,9 @@ body.ember-body {
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 500;
-  color: var(--ember-app-dim);
+  color: var(--text-dim);
   display: flex;
   align-items: center;
-  padding-right: 0.25rem;
 }
 
 .ember-slot {
@@ -470,25 +395,20 @@ body.ember-body {
   justify-content: center;
   min-height: 2.5rem;
   border-radius: 3px;
-  border: 1px solid var(--ember-app-border);
+  border: 1px solid var(--border);
   background: transparent;
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 500;
-  color: var(--ember-app-dim);
+  color: var(--text-dim);
   cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   padding: 0.35rem 0.25rem;
-  text-align: center;
-  line-height: 1.3;
 }
 
-.ember-slot:hover {
+.ember-slot:hover:not(:disabled) {
   border-color: rgba(111, 123, 98, 0.45);
-  color: var(--ember-app-muted);
+  color: var(--text-muted);
 }
 
 .ember-slot:focus-visible {
@@ -501,7 +421,6 @@ body.ember-body {
   border-color: var(--ink);
   color: var(--rice-cream);
   cursor: default;
-  font-weight: 500;
 }
 
 .ember-slot--booked:hover {
@@ -509,55 +428,35 @@ body.ember-body {
   color: var(--rice-cream);
 }
 
-.ember-slot--booked span {
-  font-size: 0.58rem;
-  font-weight: 400;
-  color: var(--ember-app-muted);
-  display: block;
-  margin-top: 0.1rem;
-}
-
-.ember-slot--mine {
-  background: var(--sumi-green);
-  border-color: var(--sumi-green);
-  color: var(--rice-cream);
-}
-
-/* ─── Bottom Navigation ─── */
-
 .ember-nav {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 0.25rem;
-  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--ember-app-border);
-  background: rgba(20, 18, 16, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 0.7rem 0.85rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border);
+  background: var(--sumi-green);
 }
 
 .ember-nav__link {
   flex: 1;
   border: none;
   background: none;
-  padding: 0.4rem 0.15rem;
+  padding: 0.4rem 0.1rem;
   font-family: var(--font-sans);
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ember-app-dim);
+  color: rgba(244, 238, 226, 0.45);
   cursor: pointer;
   text-align: center;
   line-height: 1.35;
   transition: color 0.25s ease;
-  white-space: nowrap;
 }
 
 .ember-nav__link:hover {
-  color: var(--ember-app-muted);
+  color: rgba(244, 238, 226, 0.7);
 }
 
 .ember-nav__link.is-active {
@@ -570,51 +469,21 @@ body.ember-body {
   border-radius: 2px;
 }
 
-/* ─── Mobile: full-bleed ─── */
-
-@media (max-width: 480px) {
-  .ember-stage {
-    padding: 0;
-    background: var(--ember-app-bg);
-  }
-
-  .ember-device {
-    max-width: none;
-    gap: 0;
-  }
-
-  .ember-device__frame {
-    aspect-ratio: unset;
-    max-height: none;
-    height: 100dvh;
-    padding: 0;
-    border-radius: 0;
-    background: var(--ember-app-bg);
-    box-shadow: none;
-  }
-
-  .ember-device__notch {
-    display: none;
-  }
-
-  .ember-device__screen {
-    border-radius: 0;
-  }
-
-  .ember-device__brand {
-    display: none;
-  }
-
-  .ember-view {
-    padding-top: max(2.5rem, env(safe-area-inset-top, 2.5rem));
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
-
 @media (min-width: 481px) {
-  .ember-device__screen {
-    min-height: 0;
+  .ember-shell {
+    padding: 1.5rem 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(58, 74, 63, 0.14) 0%, transparent 65%),
+      var(--coal);
+  }
+
+  .ember-app {
+    min-height: calc(100dvh - 3rem);
+    max-height: calc(100dvh - 3rem);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
   }
 }
 
