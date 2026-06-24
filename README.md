@@ -60,3 +60,9 @@ python3 -m http.server 8765
 ```
 
 Then open [http://localhost:8765](http://localhost:8765) in your browser.
+
+---
+
+## Hotaru Brand Deck
+
+The original Hotaru slide presentation lives at [`deck/index.html`](deck/index.html) for brand and investor walkthroughs.
