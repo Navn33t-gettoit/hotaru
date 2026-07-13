@@ -1,9 +1,10 @@
-const CACHE_NAME = "ember-v1";
+const CACHE_NAME = "ember-v2";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./ember.css",
+  "./app.js",
   "./manifest.json",
   "./sw.js",
   "./assets/ember-logo.svg",
@@ -40,8 +41,36 @@ self.addEventListener("activate", function (event) {
   );
 });
 
+/* Network-first for the app shell and code so updates land immediately;
+   the cache is the offline fallback. Static assets stay cache-first. */
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
+
+  var url = new URL(event.request.url);
+  var isCode =
+    event.request.mode === "navigate" ||
+    /\.(js|css|html|json)$/.test(url.pathname);
+
+  if (isCode) {
+    event.respondWith(
+      fetch(event.request).then(function (response) {
+        if (response && response.status === 200 && response.type !== "opaque") {
+          var copy = response.clone();
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(event.request, copy);
+          });
+        }
+        return response;
+      }).catch(function () {
+        return caches.match(event.request).then(function (cached) {
+          return cached || (event.request.mode === "navigate"
+            ? caches.match("./index.html")
+            : undefined);
+        });
+      })
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then(function (cached) {
@@ -58,10 +87,6 @@ self.addEventListener("fetch", function (event) {
         });
 
         return response;
-      }).catch(function () {
-        if (event.request.mode === "navigate") {
-          return caches.match("./index.html");
-        }
       });
     })
   );

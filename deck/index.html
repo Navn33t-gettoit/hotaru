@@ -3,11 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotaru — Presentation</title>
+  <title>Hotaru — Our Shared Ecosystem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Ecosystem deck — ambient treatments for slides 6 & 7 */
+    .slide[data-slide="6"] .slide__ambient::before {
+      width: 48vw;
+      height: 48vw;
+      top: -12%;
+      right: -8%;
+      background: radial-gradient(circle, rgba(192, 107, 62, 0.09) 0%, transparent 70%);
+    }
+
+    .slide[data-slide="7"] .slide__ambient::before {
+      width: 60vw;
+      height: 60vw;
+      bottom: -25%;
+      left: 20%;
+      background: radial-gradient(circle, rgba(58, 74, 63, 0.08) 0%, transparent 70%);
+    }
+
+    .slide[data-slide="7"] .slide__ambient::after {
+      width: 30vw;
+      height: 30vw;
+      top: 5%;
+      right: 12%;
+      background: radial-gradient(circle, rgba(192, 107, 62, 0.07) 0%, transparent 70%);
+    }
+
+    /* Retreat example cards — serif name line inside arch cards */
+    .arch-card__name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+      font-weight: 400;
+      color: var(--sumi-green);
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,151 +52,120 @@
 
   <div class="slide-counter" aria-live="polite">
     <span class="slide-counter__current" id="slideCurrent">01</span>
-    <span aria-hidden="true"> / 10</span>
+    <span aria-hidden="true"> / 07</span>
   </div>
 
   <div class="deck" id="deck">
 
-    <!-- Slide 1: The Manifest -->
-    <section class="slide active" data-slide="1" aria-label="Slide 1 of 10: The Manifest">
+    <!-- Slide 1: Our Shared Ecosystem -->
+    <section class="slide active" data-slide="1" aria-label="Slide 1 of 7: Our Shared Ecosystem">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
       <div class="slide__inner slide__inner--centered">
         <p class="slide__eyebrow">Hotaru</p>
-        <h1 class="slide__title">The Manifest</h1>
-        <p class="slide__hook">We update existing structures into quiet, high-focus spaces for independent work.</p>
+        <h1 class="slide__title">Our Shared Ecosystem</h1>
+        <p class="slide__hook">We are building a complete, supportive environment, not just renting rooms.</p>
         <div class="slide__divider" aria-hidden="true"></div>
         <ul class="slide__body">
-          <li>Protecting your attention is our baseline layout rule.</li>
-          <li>We build intentional, honest environments that help you find a steady daily rhythm.</li>
-          <li>Quality spaces designed simply to let you get your best work done.</li>
+          <li><strong>Co-living</strong> provides the steady, daily rhythm of our homes.</li>
+          <li><strong>Our retreats</strong> bring people together for deeper focus, wellness, and connection.</li>
+          <li><strong>Ember</strong> quietly ties it all together, taking care of the logistics so our guests can just be present.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 2: The Modern Tension -->
-    <section class="slide" data-slide="2" aria-label="Slide 2 of 10: The Modern Tension">
+    <!-- Slide 2: The Foundation (Co-living) -->
+    <section class="slide" data-slide="2" aria-label="Slide 2 of 7: The Foundation, Co-living">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
       <div class="slide__inner">
-        <p class="slide__eyebrow">The Problem</p>
-        <h1 class="slide__title">The Modern Tension</h1>
-        <p class="slide__hook">Evolved professionals and explorers outgrow transient spaces when they need a true reset.</p>
+        <p class="slide__eyebrow">The Foundation</p>
+        <h1 class="slide__title">Co-living</h1>
+        <p class="slide__hook">Our everyday spaces give slowmads, cultural explorers, and independent creators a calm, reliable place to anchor their lives.</p>
         <div class="slide__divider" aria-hidden="true"></div>
         <ul class="slide__body">
-          <li>Regular travel rentals feel isolating, while holiday hostels disrupt your focus and rhythm.</li>
-          <li>We leave out the loud distractions, the clutter, and the forced social mechanics.</li>
-          <li>A calm space designed for independent people who need to rest, think, and rebuild their daily routine.</li>
+          <li>Travelers, couples, and remote workers are actively seeking genuine community over chaotic hostels or isolating corporate apartments.</li>
+          <li>By providing a beautiful, distraction-free home that caters to rest-seekers and explorers alike, we build deep trust with our long-term residents.</li>
+          <li>This constant, organic presence from our core audience gives our properties a stable, dependable heartbeat all year round.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 3: The Geographic Strategy -->
-    <section class="slide" data-slide="3" aria-label="Slide 3 of 10: The Geographic Strategy">
+    <!-- Slide 3: Hotaru Retreats (For Everyone) -->
+    <section class="slide" data-slide="3" aria-label="Slide 3 of 7: Hotaru Retreats, For Everyone">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
       <div class="slide__inner">
-        <p class="slide__eyebrow">Two Locations</p>
-        <h1 class="slide__title">The Geographic Strategy</h1>
-        <p class="slide__hook">Two locations designed for two different paces of work.</p>
+        <p class="slide__eyebrow">For Everyone</p>
+        <h1 class="slide__title">Hotaru Retreats</h1>
+        <p class="slide__hook">We handle the quiet background work so passionate hosts can create meaningful gatherings for all kinds of travelers.</p>
         <div class="slide__divider" aria-hidden="true"></div>
-        <div class="locations">
-          <div class="location">
-            <span class="location__name">Dharamkot</span>
-            <span class="location__desc">Quiet mountain spaces for uninterrupted, head-down projects.</span>
-          </div>
-          <div class="location">
-            <span class="location__name">Siolim</span>
-            <span class="location__desc">A relaxed coastal house for creative flow and open collaboration.</span>
-          </div>
-        </div>
-        <ul class="slide__body" style="margin-top: 0.5rem;">
-          <li>One simple network, changing with your workflow.</li>
+        <ul class="slide__body">
+          <li>Our retreats are not just for companies; they are designed for all our guests&mdash;from solo rest-seekers and couples to groups of friends and small teams.</li>
+          <li>We internally manage all the retreat planning, costing, and logistics so the experience feels effortless for whoever joins us.</li>
+          <li>Our gatherings are host-led&mdash;we carefully find the right guides and authentic on-ground partners to lead our guests under the Hotaru Retreats banner.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 4: The Spatial Blueprint -->
-    <section class="slide" data-slide="4" aria-label="Slide 4 of 10: The Spatial Blueprint">
+    <!-- Slide 4: The Larisa Partnership -->
+    <section class="slide" data-slide="4" aria-label="Slide 4 of 7: The Larisa Partnership, Our White-Label Offering">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
       <div class="slide__inner">
-        <p class="slide__eyebrow">Architecture</p>
-        <h1 class="slide__title">The Spatial Blueprint</h1>
-        <p class="slide__hook">A clear three-tier layout that separates noise from quiet.</p>
-        <div class="slide__divider" aria-hidden="true"></div>
-        <div class="tiers">
-          <div class="tier">
-            <span class="tier__name">The Social Hub</span>
-            <span class="tier__desc">Low-slung seating and open doors centered around Koru Cafe.</span>
-          </div>
-          <div class="tier">
-            <span class="tier__name">The Workspaces</span>
-            <span class="tier__desc">Acoustic wood buffers, heavy communal tables, and quiet call nooks.</span>
-          </div>
-          <div class="tier">
-            <span class="tier__name">The Private Rooms</span>
-            <span class="tier__desc">Simple, dim-lit spaces prioritizing deep, restorative rest.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 5: Functional Recovery -->
-    <section class="slide" data-slide="5" aria-label="Slide 5 of 10: Functional Recovery">
-      <div class="slide__ambient" aria-hidden="true"></div>
-      <div class="watermark" aria-hidden="true">
-        <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
-      </div>
-      <div class="slide__inner slide__inner--centered">
-        <p class="slide__eyebrow">Wellness</p>
-        <h1 class="slide__title">Functional Recovery</h1>
-        <p class="slide__hook">Good work requires good recovery.</p>
+        <p class="slide__eyebrow">Our White-Label Offering</p>
+        <h1 class="slide__title">The Larisa Partnership</h1>
+        <p class="slide__hook">We quietly power in-house retreats for our sister brands.</p>
         <div class="slide__divider" aria-hidden="true"></div>
         <ul class="slide__body">
-          <li>We build functional wellness elements directly into the house.</li>
-          <li>Saunas, ice baths, and movement decks are standard parts of the space.</li>
-          <li>Physical recovery made a seamless part of your regular day.</li>
+          <li>We offer our retreat planning and operational rhythm as a white-label solution to other Larisa properties.</li>
+          <li>We provide a clear, reliable baseline price so our partner brands know exactly what to expect.</li>
+          <li>We bring the Hotaru standard of care and organization to their spaces without overshadowing their unique identities.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 6: Koru Cafe -->
-    <section class="slide" data-slide="6" aria-label="Slide 6 of 10: The Social Anchor Koru Cafe">
+    <!-- Slide 5: What We Host -->
+    <section class="slide" data-slide="5" aria-label="Slide 5 of 7: What We Host, Retreat Examples">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
-      <div class="slide__inner slide__inner--split">
-        <div>
-          <p class="slide__eyebrow">The Social Anchor</p>
-          <h1 class="slide__title">Koru Cafe</h1>
-          <p class="slide__hook">We replaced the reception desk with a tea-forward neighborhood cafe.</p>
-          <div class="slide__divider" aria-hidden="true"></div>
-          <ul class="slide__body">
-            <li>Check-ins and morning conversations happen over a central island bar.</li>
-            <li>A simple tea and chai setup built for steady energy without the crash.</li>
-            <li>Honest, affordable, local food designed to be eaten every day.</li>
-          </ul>
-        </div>
-        <div class="feature-logo">
-          <img src="../assets/koru-logo.svg" alt="Koru Cafe logo" width="176" height="176" />
-          <span class="feature-logo__name">Cafe <em>Koru</em></span>
-          <span class="feature-logo__tag">Absorbed in the moment</span>
+      <div class="slide__inner">
+        <p class="slide__eyebrow">Retreat Examples</p>
+        <h1 class="slide__title">What We Host</h1>
+        <p class="slide__hook">Honest, distraction-free experiences tailored to whoever walks through our doors.</p>
+        <div class="slide__divider" aria-hidden="true"></div>
+        <div class="arch-grid">
+          <div class="arch-card">
+            <p class="arch-card__label">For the Rest-Seeker</p>
+            <p class="arch-card__name">The Mountain Reset</p>
+            <p class="arch-card__text">A host-led wellness gathering focused entirely on physical decompression for individuals and couples, featuring breathwork and thermal recovery.</p>
+          </div>
+          <div class="arch-card">
+            <p class="arch-card__label">For Creators &amp; Friends</p>
+            <p class="arch-card__name">The Creative Flow</p>
+            <p class="arch-card__text">A creator-led workshop for deep focus and shared connection, anchored by sunset conversations and shared meals at Koru Cafe.</p>
+          </div>
+          <div class="arch-card">
+            <p class="arch-card__label">For Builders &amp; Teams</p>
+            <p class="arch-card__name">The Team Alignment</p>
+            <p class="arch-card__text">A simple, grounded offsite for small companies who just need to step away from their screens, sit face-to-face, and connect.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 7: Ember -->
-    <section class="slide" data-slide="7" aria-label="Slide 7 of 10: The Digital Companion Ember">
+    <!-- Slide 6: Ember -->
+    <section class="slide" data-slide="6" aria-label="Slide 6 of 7: Ember, The Digital Companion">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
@@ -170,12 +174,12 @@
         <div>
           <p class="slide__eyebrow">The Digital Companion</p>
           <h1 class="slide__title">Ember</h1>
-          <p class="slide__hook">A quiet web tool that stays out of your way.</p>
+          <p class="slide__hook">A quiet tool that takes care of the friction so we can focus on human connection.</p>
           <div class="slide__divider" aria-hidden="true"></div>
           <ul class="slide__body">
-            <li>Strictly opt-in with zero push notifications or alerts.</li>
-            <li>Acts like a basic notice board, not an app looking for screen time.</li>
-            <li>A hyper-local PWA built purely for daily utility.</li>
+            <li>Ember lets our solo residents, couples, and our retreat groups easily reserve saunas or meeting rooms without needing a busy front desk.</li>
+            <li>It respects our guests&rsquo; peace&mdash;there are no push notifications and no noisy group chats.</li>
+            <li>It quietly archives the memories and connections made, allowing people to stay in touch naturally long after they leave.</li>
           </ul>
         </div>
         <div class="feature-logo">
@@ -186,68 +190,21 @@
       </div>
     </section>
 
-    <!-- Slide 8: Ember's Architecture -->
-    <section class="slide" data-slide="8" aria-label="Slide 8 of 10: Ember's Architecture">
-      <div class="slide__ambient" aria-hidden="true"></div>
-      <div class="watermark" aria-hidden="true">
-        <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
-      </div>
-      <div class="slide__inner">
-        <p class="slide__eyebrow">Ember · Product</p>
-        <h1 class="slide__title">Ember&rsquo;s Architecture</h1>
-        <p class="slide__hook">Built for immediate utility, completely stripping out feeds and algorithms.</p>
-        <div class="slide__divider" aria-hidden="true"></div>
-        <div class="arch-grid">
-          <div class="arch-card">
-            <p class="arch-card__label">Status</p>
-            <p class="arch-card__text">Simple toggles (Deep Work, Open, Offline) to ease social friction.</p>
-          </div>
-          <div class="arch-card">
-            <p class="arch-card__label">The Board</p>
-            <p class="arch-card__text">A text-only ledger that clears every week to keep things relevant.</p>
-          </div>
-          <div class="arch-card">
-            <p class="arch-card__label">Space Layer</p>
-            <p class="arch-card__text">Fast, direct booking for the sauna, ice bath, and meeting rooms.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 9: The Invisible Tech Stack -->
-    <section class="slide" data-slide="9" aria-label="Slide 9 of 10: The Invisible Tech Stack">
+    <!-- Slide 7: A Balanced Model -->
+    <section class="slide" data-slide="7" aria-label="Slide 7 of 7: A Balanced Model">
       <div class="slide__ambient" aria-hidden="true"></div>
       <div class="watermark" aria-hidden="true">
         <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
       </div>
       <div class="slide__inner slide__inner--centered">
-        <p class="slide__eyebrow">Operations</p>
-        <h1 class="slide__title">The Invisible Tech Stack</h1>
-        <p class="slide__hook">We automated the admin work so the onsite experience stays human.</p>
+        <p class="slide__eyebrow">Closing</p>
+        <h1 class="slide__title">A Balanced Model</h1>
+        <p class="slide__hook">When these pieces work together, our spaces sustain themselves naturally.</p>
         <div class="slide__divider" aria-hidden="true"></div>
         <ul class="slide__body">
-          <li>Simple digital registration before you arrive.</li>
-          <li>Room codes and Wi-Fi details sent straight to your phone.</li>
-          <li>No standing at a desk filling out paperwork when you walk through the door.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Slide 10: The Network Legacy -->
-    <section class="slide" data-slide="10" aria-label="Slide 10 of 10: The Network Legacy">
-      <div class="slide__ambient" aria-hidden="true"></div>
-      <div class="watermark" aria-hidden="true">
-        <img src="../assets/hotaru-logo.svg" alt="" width="44" height="44" />
-      </div>
-      <div class="slide__inner slide__inner--centered">
-        <p class="slide__eyebrow">Community</p>
-        <h1 class="slide__title">The Network Legacy</h1>
-        <p class="slide__hook">Hotaru is a shared address for people who build things.</p>
-        <div class="slide__divider" aria-hidden="true"></div>
-        <ul class="slide__body">
-          <li>The Alumni Thread keeps a simple log of who you met and when.</li>
-          <li>We keep the network useful without relying on noisy group chats.</li>
-          <li>A quiet, ongoing community of independent professionals.</li>
+          <li>Our long-term residents&mdash;solo travelers, couples, and explorers&mdash;bring steady life and reliable support to our homes.</li>
+          <li>Our specialized retreats allow us to share our wellness spaces with both individuals seeking a reset and larger teams, which greatly strengthens our foundation.</li>
+          <li>It is a balanced, resilient approach that respects our guests, our staff, and the long-term health of our business.</li>
         </ul>
       </div>
     </section>
@@ -289,13 +246,8 @@
         slideCurrent.textContent = pad(current + 1);
       }
 
-      function next() {
-        goTo(current + 1);
-      }
-
-      function prev() {
-        goTo(current - 1);
-      }
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
 
       document.addEventListener("keydown", function (e) {
         if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === " ") {

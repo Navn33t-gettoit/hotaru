@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Ember — the quiet community layer for Hotaru." />
-  <meta name="theme-color" content="#3A4A3F" />
+  <meta name="theme-color" content="#1C1814" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Ember" />
@@ -24,47 +24,60 @@
 
       <div class="ember-views">
 
+        <!-- ── 01 · Home / Status ── -->
         <section
           class="ember-view is-active"
-          id="view-status"
-          data-view="status"
+          id="view-home"
+          data-view="home"
           role="tabpanel"
-          aria-labelledby="tab-status"
+          aria-labelledby="tab-home"
         >
-          <div class="ember-view__scroll">
-            <p class="ember-greeting">Good evening, Meera.</p>
-
-            <div class="ember-status-block">
-              <div class="ember-status-block__glow">
-                <img
-                  class="ember-status-block__logo"
-                  src="assets/ember-logo.svg"
-                  alt=""
-                  width="68"
-                  height="68"
-                />
-              </div>
-              <p class="ember-status-block__label" id="statusLabel">
-                Deep Work<em>Focused until 8:00 pm</em>
-              </p>
+          <header class="ember-home-bar">
+            <div class="ember-home-bar__brand">
+              <img src="assets/ember-logo.svg" alt="" width="22" height="22" />
+              <span>ember</span>
             </div>
+            <button type="button" class="ember-avatar" id="avatarBtn" aria-label="Switch resident (demo)">M</button>
+          </header>
 
-            <div class="ember-pills" role="group" aria-label="Set your status">
-              <button type="button" class="ember-pill is-active" data-status="deep-work">Deep Work</button>
-              <button type="button" class="ember-pill" data-status="open">Open</button>
-              <button type="button" class="ember-pill" data-status="offline">Offline</button>
-            </div>
+          <div class="ember-greeting-block">
+            <p class="ember-eyebrow" id="greetingMeta">Tuesday · 6:40 pm</p>
+            <p class="ember-greeting" id="greetingText">Good evening, Meera.</p>
+          </div>
 
-            <div class="ember-ledger">
-              <p class="ember-ledger__label">In the space</p>
-              <ul class="ember-ledger__list">
-                <li class="ember-ledger__item"><strong>Kabir</strong> <span>· Open to connect</span></li>
-                <li class="ember-ledger__item"><strong>Ananya</strong> <span>· Deep work</span></li>
-              </ul>
+          <div class="ember-status-block">
+            <p class="ember-eyebrow">Your status</p>
+            <div class="ember-status-block__glow">
+              <img
+                class="ember-status-block__logo"
+                src="assets/ember-logo.svg"
+                alt=""
+                width="78"
+                height="78"
+              />
             </div>
+            <p class="ember-status-block__label" id="statusLabel">
+              Deep Work<em>Focused until 8:00 pm</em>
+            </p>
+          </div>
+
+          <div class="ember-pills" role="group" aria-label="Set your status">
+            <button type="button" class="ember-pill is-active" data-status="deep-work">Deep Work</button>
+            <button type="button" class="ember-pill" data-status="open">Open</button>
+            <button type="button" class="ember-pill" data-status="offline">Offline</button>
+          </div>
+
+          <div class="ember-ledger">
+            <div class="ember-ledger__head">
+              <p class="ember-ledger__label">In the property</p>
+              <p class="ember-ledger__count" id="ledgerCount">5 here now</p>
+            </div>
+            <ul class="ember-ledger__list" id="ledgerList"></ul>
+            <p class="ember-ledger__note">Presence is only visible inside the property. Nothing here sends a notification.</p>
           </div>
         </section>
 
+        <!-- ── 02 · The Board ── -->
         <section
           class="ember-view"
           id="view-board"
@@ -73,34 +86,17 @@
           aria-labelledby="tab-board"
           hidden
         >
-          <div class="ember-view__scroll">
-            <p class="ember-subtitle">What the house is making</p>
-            <h1 class="ember-title">The Board</h1>
+          <p class="ember-eyebrow">What the house is making</p>
+          <h1 class="ember-title">The Board</h1>
 
-            <div class="ember-board">
-              <article class="ember-card">
-                <span class="ember-card__tag">Making</span>
-                <p class="ember-card__byline">Ananya <span>(Asagao)</span></p>
-                <p class="ember-card__body">A field-recording archive of the monsoon. Looking for someone who knows Ableton.</p>
-              </article>
+          <div class="ember-board" id="boardList"></div>
 
-              <article class="ember-card">
-                <span class="ember-card__tag ember-card__tag--offering">Offering</span>
-                <p class="ember-card__byline">Rohan <span>(Anjuna)</span></p>
-                <p class="ember-card__body">Free pour-over lessons, 7–8am at the Koru bar. Bring your own cup.</p>
-              </article>
+          <button type="button" class="ember-cta" id="boardCta">+ Post to the board</button>
 
-              <article class="ember-card">
-                <span class="ember-card__tag ember-card__tag--looking">Looking</span>
-                <p class="ember-card__byline">Kabir <span>(Vagator)</span></p>
-                <p class="ember-card__body">A running partner for slow 6km loops along the Chapora river at dawn.</p>
-              </article>
-            </div>
-
-            <button type="button" class="ember-cta">+ Post to the board</button>
-          </div>
+          <p class="ember-board__wipe" id="boardWipe">One post per person. The board clears itself Sunday night.</p>
         </section>
 
+        <!-- ── 03 · Spaces ── -->
         <section
           class="ember-view"
           id="view-spaces"
@@ -109,171 +105,107 @@
           aria-labelledby="tab-spaces"
           hidden
         >
-          <div class="ember-view__scroll">
-            <p class="ember-subtitle">Reservations</p>
-            <h1 class="ember-title">Spaces</h1>
+          <p class="ember-eyebrow">Reserve a space</p>
+          <h1 class="ember-title">Spaces</h1>
 
-            <div class="ember-timetable" role="grid" aria-label="Amenity reservations">
-              <div class="ember-timetable__header" role="row">
-                <span role="columnheader"></span>
-                <span role="columnheader">Sauna</span>
-                <span role="columnheader">Ice Bath</span>
-                <span role="columnheader">Meeting Room</span>
-              </div>
+          <div class="ember-space-tabs" role="tablist" aria-label="Choose a space" id="spaceTabs"></div>
 
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">5:00</span>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Sauna at 5:00">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Ice Bath at 5:00">—</button>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Meeting Room at 5:00 booked by Priya">Priya</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">5:30</span>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Sauna at 5:30 booked by Dev">Dev</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Ice Bath at 5:30">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Meeting Room at 5:30">—</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">6:00</span>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Sauna at 6:00">—</button>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Ice Bath at 6:00 booked by Meera">Meera</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Meeting Room at 6:00">—</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">6:30</span>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Sauna at 6:30">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Ice Bath at 6:30">—</button>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Meeting Room at 6:30 booked by Arjun">Arjun</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">7:00</span>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Sauna at 7:00 booked by Kabir">Kabir</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Ice Bath at 7:00">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Meeting Room at 7:00">—</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">7:30</span>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Sauna at 7:30">—</button>
-                <button type="button" class="ember-slot ember-slot--booked" disabled aria-label="Ice Bath at 7:30 booked by Ananya">Ananya</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Meeting Room at 7:30">—</button>
-              </div>
-
-              <div class="ember-timetable__row" role="row">
-                <span class="ember-timetable__time" role="rowheader">8:00</span>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Sauna at 8:00">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Ice Bath at 8:00">—</button>
-                <button type="button" class="ember-slot" role="gridcell" aria-label="Book Meeting Room at 8:00">—</button>
-              </div>
+          <div class="ember-dayrow">
+            <p class="ember-dayrow__label" id="dayLabel">Today <span>· Sun 13 Jul</span></p>
+            <div class="ember-dayrow__arrows">
+              <button type="button" class="ember-dayrow__arrow" id="dayPrev" aria-label="Previous day">&#8249;</button>
+              <button type="button" class="ember-dayrow__arrow" id="dayNext" aria-label="Next day">&#8250;</button>
             </div>
           </div>
+
+          <div class="ember-slots" id="slotList" aria-live="polite"></div>
+        </section>
+
+        <!-- ── 04 · The Thread ── -->
+        <section
+          class="ember-view"
+          id="view-thread"
+          data-view="thread"
+          role="tabpanel"
+          aria-labelledby="tab-thread"
+          hidden
+        >
+          <p class="ember-eyebrow">After you leave</p>
+          <h1 class="ember-title">The Thread</h1>
+
+          <p class="ember-thread-intro">A quiet record of your stays and the people you built with. Nothing to scroll, nothing to miss.</p>
+
+          <div id="threadList"></div>
         </section>
 
       </div>
 
-      <nav class="ember-nav" role="tablist" aria-label="Digital Mirror navigation">
-        <button
-          type="button"
-          class="ember-nav__link is-active"
-          id="tab-status"
-          role="tab"
-          aria-selected="true"
-          aria-controls="view-status"
-          data-nav="status"
-        >01 STATUS</button>
-        <button
-          type="button"
-          class="ember-nav__link"
-          id="tab-board"
-          role="tab"
-          aria-selected="false"
-          aria-controls="view-board"
-          data-nav="board"
-        >02 THE BOARD</button>
-        <button
-          type="button"
-          class="ember-nav__link"
-          id="tab-spaces"
-          role="tab"
-          aria-selected="false"
-          aria-controls="view-spaces"
-          data-nav="spaces"
-        >03 SPACES</button>
+      <!-- Booking CTA floats above the nav, inside the Spaces view flow -->
+      <button type="button" class="ember-cta ember-spaces-cta" id="bookCta" hidden>Book</button>
+
+      <nav class="ember-nav" role="tablist" aria-label="Ember navigation">
+        <button type="button" class="ember-nav__link is-active" id="tab-home" role="tab" aria-selected="true" aria-controls="view-home" data-nav="home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg>
+          Home
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-board" role="tab" aria-selected="false" aria-controls="view-board" data-nav="board">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></svg>
+          Board
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-spaces" role="tab" aria-selected="false" aria-controls="view-spaces" data-nav="spaces">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 9.5h17" /><path d="M8 3v4M16 3v4" /></svg>
+          Spaces
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-thread" role="tab" aria-selected="false" aria-controls="view-thread" data-nav="thread">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19c4-1 5.5-9 9-9 2.5 0 3 2.5 1.5 4S10 15 12 17.5 19.5 20 20 12.5" /></svg>
+          Thread
+        </button>
       </nav>
 
+      <!-- Scrim + sheets live inside the app frame -->
+      <div class="ember-scrim" id="scrim"></div>
+
+      <div class="ember-sheet" id="composeSheet" role="dialog" aria-modal="true" aria-label="Post to the board">
+        <div class="ember-sheet__grab" aria-hidden="true"></div>
+        <p class="ember-sheet__title" id="composeTitle">Pin to the board</p>
+        <p class="ember-sheet__hint">One post per person, gone by Sunday night. Make it something the house can act on.</p>
+        <div class="ember-tag-picker" role="group" aria-label="Post type">
+          <button type="button" class="ember-tag-pick is-active" data-tag="making">Making</button>
+          <button type="button" class="ember-tag-pick" data-tag="offering">Offering</button>
+          <button type="button" class="ember-tag-pick" data-tag="looking">Looking</button>
+        </div>
+        <textarea
+          class="ember-compose__input"
+          id="composeInput"
+          maxlength="160"
+          placeholder="A field-recording archive of the monsoon…"
+          aria-label="Your post"
+        ></textarea>
+        <div class="ember-compose__foot">
+          <button type="button" class="ember-compose__remove" id="composeRemove" hidden>Take your post down</button>
+          <span id="composeCount">0 / 160</span>
+        </div>
+        <button type="button" class="ember-cta" id="composeSubmit">Pin to the board</button>
+      </div>
+
+      <div class="ember-sheet" id="personaSheet" role="dialog" aria-modal="true" aria-label="Switch resident">
+        <div class="ember-sheet__grab" aria-hidden="true"></div>
+        <p class="ember-sheet__title">View the house as</p>
+        <p class="ember-sheet__hint">Demo only — each resident sees their own status, post, and bookings.</p>
+        <ul class="ember-persona-list" id="personaList"></ul>
+        <p class="ember-sheet__footnote">In production this is your own quiet corner of Ember, signed in once at check-in.</p>
+      </div>
+
+      <div class="ember-toast" id="toast" role="status" aria-live="polite"></div>
+
     </div>
+
+    <p class="ember-shell__caption">
+      <img src="assets/hotaru-logo.svg" alt="" width="18" height="18" />
+      Ember · The community layer for Hotaru
+    </p>
   </div>
 
-  <script>
-    (function () {
-      var views = Array.from(document.querySelectorAll(".ember-view"));
-      var navLinks = Array.from(document.querySelectorAll(".ember-nav__link"));
-      var pills = Array.from(document.querySelectorAll(".ember-pill"));
-      var statusLabel = document.getElementById("statusLabel");
-      var currentView = "status";
-
-      var statusCopy = {
-        "deep-work": { title: "Deep Work", sub: "Focused until 8:00 pm" },
-        open: { title: "Open", sub: "Available to connect" },
-        offline: { title: "Offline", sub: "Not in the space" }
-      };
-
-      function showView(name) {
-        if (name === currentView) return;
-        currentView = name;
-
-        views.forEach(function (view) {
-          var active = view.dataset.view === name;
-          view.classList.toggle("is-active", active);
-          view.hidden = !active;
-        });
-
-        navLinks.forEach(function (link) {
-          var active = link.dataset.nav === name;
-          link.classList.toggle("is-active", active);
-          link.setAttribute("aria-selected", active ? "true" : "false");
-        });
-      }
-
-      navLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-          showView(link.dataset.nav);
-        });
-      });
-
-      pills.forEach(function (pill) {
-        pill.addEventListener("click", function () {
-          var status = pill.dataset.status;
-          pills.forEach(function (p) {
-            p.classList.toggle("is-active", p === pill);
-          });
-          var copy = statusCopy[status];
-          if (copy && statusLabel) {
-            statusLabel.innerHTML = copy.title + "<em>" + copy.sub + "</em>";
-          }
-        });
-      });
-
-      document.querySelectorAll(".ember-slot:not(.ember-slot--booked)").forEach(function (slot) {
-        slot.addEventListener("click", function () {
-          slot.classList.add("ember-slot--booked");
-          slot.textContent = "Meera";
-          slot.setAttribute("aria-label", slot.getAttribute("aria-label").replace("Book", "Booked by"));
-          slot.disabled = true;
-        });
-      });
-
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker.register("./sw.js").catch(function () {});
-        });
-      }
-    })();
-  </script>
-
+  <script src="app.js"></script>
 </body>
 </html>
