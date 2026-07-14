@@ -58,11 +58,14 @@ The codebase is built entirely with vanilla HTML, CSS, and JavaScript to load in
 
 ```
 hotaru/
-├── index.html            # PWA shell — the four views & sheets
-├── app.js                # All app logic: state, simulation, booking
-├── ember.css             # Zero-notification UI framework
-├── manifest.json         # Application identity
-├── sw.js                 # Service worker (network-first shell, offline fallback)
+├── index.html            # Redirects to ember/
+├── ember/
+│   ├── index.html        # PWA shell — the four views & sheets
+│   ├── app.js            # All app logic: state, simulation, booking
+│   ├── ember.css         # Zero-notification UI framework
+│   ├── manifest.json     # Application identity
+│   ├── sw.js             # Service worker (network-first shell, offline fallback)
+│   └── assets/           # App icons & logo marks
 ├── styles.css            # Shared presentation styling for the decks
 ├── deck/
 │   ├── index.html        # "Our Shared Ecosystem" — 7-slide team deck
@@ -78,7 +81,7 @@ cd hotaru
 python3 -m http.server 8765
 ```
 
-Then open [http://localhost:8765](http://localhost:8765) for the app, and [http://localhost:8765/deck/](http://localhost:8765/deck/) for the presentation.
+Then open [http://localhost:8765/ember/](http://localhost:8765/ember/) for the app, and [http://localhost:8765/deck/](http://localhost:8765/deck/) for the presentation.
 
 ---
 

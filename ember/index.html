@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Ember — the quiet community layer for Hotaru." />
+  <meta name="theme-color" content="#1C1814" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Ember" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/ember-logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <title>Ember</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="ember.css" />
+</head>
+<body class="ember-body">
+
+  <div class="ember-shell">
+    <div class="ember-app" id="emberApp">
+
+      <div class="ember-views">
+
+        <!-- ── 01 · Home / Status ── -->
+        <section
+          class="ember-view is-active"
+          id="view-home"
+          data-view="home"
+          role="tabpanel"
+          aria-labelledby="tab-home"
+        >
+          <header class="ember-home-bar">
+            <div class="ember-home-bar__brand">
+              <img src="assets/ember-logo.svg" alt="" width="22" height="22" />
+              <span>ember</span>
+            </div>
+            <button type="button" class="ember-avatar" id="avatarBtn" aria-label="Switch resident (demo)">M</button>
+          </header>
+
+          <div class="ember-greeting-block">
+            <p class="ember-eyebrow" id="greetingMeta">Tuesday · 6:40 pm</p>
+            <p class="ember-greeting" id="greetingText">Good evening, Meera.</p>
+          </div>
+
+          <div class="ember-status-block">
+            <p class="ember-eyebrow">Your status</p>
+            <div class="ember-status-block__glow">
+              <img
+                class="ember-status-block__logo"
+                src="assets/ember-logo.svg"
+                alt=""
+                width="78"
+                height="78"
+              />
+            </div>
+            <p class="ember-status-block__label" id="statusLabel">
+              Deep Work<em>Focused until 8:00 pm</em>
+            </p>
+          </div>
+
+          <div class="ember-pills" role="group" aria-label="Set your status">
+            <button type="button" class="ember-pill is-active" data-status="deep-work">Deep Work</button>
+            <button type="button" class="ember-pill" data-status="open">Open</button>
+            <button type="button" class="ember-pill" data-status="offline">Offline</button>
+          </div>
+
+          <div class="ember-ledger">
+            <div class="ember-ledger__head">
+              <p class="ember-ledger__label">In the property</p>
+              <p class="ember-ledger__count" id="ledgerCount">5 here now</p>
+            </div>
+            <ul class="ember-ledger__list" id="ledgerList"></ul>
+            <p class="ember-ledger__note">Presence is only visible inside the property. Nothing here sends a notification.</p>
+          </div>
+        </section>
+
+        <!-- ── 02 · The Board ── -->
+        <section
+          class="ember-view"
+          id="view-board"
+          data-view="board"
+          role="tabpanel"
+          aria-labelledby="tab-board"
+          hidden
+        >
+          <p class="ember-eyebrow">What the house is making</p>
+          <h1 class="ember-title">The Board</h1>
+
+          <div class="ember-board" id="boardList"></div>
+
+          <button type="button" class="ember-cta" id="boardCta">+ Post to the board</button>
+
+          <p class="ember-board__wipe" id="boardWipe">One post per person. The board clears itself Sunday night.</p>
+        </section>
+
+        <!-- ── 03 · Spaces ── -->
+        <section
+          class="ember-view"
+          id="view-spaces"
+          data-view="spaces"
+          role="tabpanel"
+          aria-labelledby="tab-spaces"
+          hidden
+        >
+          <p class="ember-eyebrow">Reserve a space</p>
+          <h1 class="ember-title">Spaces</h1>
+
+          <div class="ember-space-tabs" role="tablist" aria-label="Choose a space" id="spaceTabs"></div>
+
+          <div class="ember-dayrow">
+            <p class="ember-dayrow__label" id="dayLabel">Today <span>· Sun 13 Jul</span></p>
+            <div class="ember-dayrow__arrows">
+              <button type="button" class="ember-dayrow__arrow" id="dayPrev" aria-label="Previous day">&#8249;</button>
+              <button type="button" class="ember-dayrow__arrow" id="dayNext" aria-label="Next day">&#8250;</button>
+            </div>
+          </div>
+
+          <div class="ember-slots" id="slotList" aria-live="polite"></div>
+        </section>
+
+        <!-- ── 04 · The Thread ── -->
+        <section
+          class="ember-view"
+          id="view-thread"
+          data-view="thread"
+          role="tabpanel"
+          aria-labelledby="tab-thread"
+          hidden
+        >
+          <p class="ember-eyebrow">After you leave</p>
+          <h1 class="ember-title">The Thread</h1>
+
+          <p class="ember-thread-intro">A quiet record of your stays and the people you built with. Nothing to scroll, nothing to miss.</p>
+
+          <div id="threadList"></div>
+        </section>
+
+      </div>
+
+      <!-- Booking CTA floats above the nav, inside the Spaces view flow -->
+      <button type="button" class="ember-cta ember-spaces-cta" id="bookCta" hidden>Book</button>
+
+      <nav class="ember-nav" role="tablist" aria-label="Ember navigation">
+        <button type="button" class="ember-nav__link is-active" id="tab-home" role="tab" aria-selected="true" aria-controls="view-home" data-nav="home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V21h13V9.5" /></svg>
+          Home
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-board" role="tab" aria-selected="false" aria-controls="view-board" data-nav="board">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></svg>
+          Board
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-spaces" role="tab" aria-selected="false" aria-controls="view-spaces" data-nav="spaces">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 9.5h17" /><path d="M8 3v4M16 3v4" /></svg>
+          Spaces
+        </button>
+        <button type="button" class="ember-nav__link" id="tab-thread" role="tab" aria-selected="false" aria-controls="view-thread" data-nav="thread">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19c4-1 5.5-9 9-9 2.5 0 3 2.5 1.5 4S10 15 12 17.5 19.5 20 20 12.5" /></svg>
+          Thread
+        </button>
+      </nav>
+
+      <!-- Scrim + sheets live inside the app frame -->
+      <div class="ember-scrim" id="scrim"></div>
+
+      <div class="ember-sheet" id="composeSheet" role="dialog" aria-modal="true" aria-label="Post to the board">
+        <div class="ember-sheet__grab" aria-hidden="true"></div>
+        <p class="ember-sheet__title" id="composeTitle">Pin to the board</p>
+        <p class="ember-sheet__hint">One post per person, gone by Sunday night. Make it something the house can act on.</p>
+        <div class="ember-tag-picker" role="group" aria-label="Post type">
+          <button type="button" class="ember-tag-pick is-active" data-tag="making">Making</button>
+          <button type="button" class="ember-tag-pick" data-tag="offering">Offering</button>
+          <button type="button" class="ember-tag-pick" data-tag="looking">Looking</button>
+        </div>
+        <textarea
+          class="ember-compose__input"
+          id="composeInput"
+          maxlength="160"
+          placeholder="What are you making, offering, or looking for?"
+          aria-label="Your post"
+        ></textarea>
+        <div class="ember-compose__foot">
+          <button type="button" class="ember-compose__remove" id="composeRemove" hidden>Take your post down</button>
+          <span id="composeCount">0 / 160</span>
+        </div>
+        <button type="button" class="ember-cta" id="composeSubmit">Pin to the board</button>
+      </div>
+
+      <div class="ember-sheet" id="personaSheet" role="dialog" aria-modal="true" aria-label="Switch resident">
+        <div class="ember-sheet__grab" aria-hidden="true"></div>
+        <p class="ember-sheet__title">View the house as</p>
+        <p class="ember-sheet__hint">Demo only — each resident sees their own status, post, and bookings.</p>
+        <ul class="ember-persona-list" id="personaList"></ul>
+        <p class="ember-sheet__footnote">In production this is your own quiet corner of Ember, signed in once at check-in.</p>
+      </div>
+
+      <div class="ember-toast" id="toast" role="status" aria-live="polite"></div>
+
+    </div>
+
+    <p class="ember-shell__caption">
+      <img src="assets/hotaru-logo.svg" alt="" width="18" height="18" />
+      Ember · The community layer for Hotaru
+    </p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
