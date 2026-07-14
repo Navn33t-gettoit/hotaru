@@ -31,7 +31,7 @@
   var SEED_POSTS = [
     {
       author: "ananya", tag: "making", hoursAgo: 2,
-      body: "A field-recording archive of the monsoon. Looking for someone who knows Ableton."
+      body: "Recording the sounds of the monsoon every evening. Looking for someone to help turn them into a short film."
     },
     {
       author: "rohan", tag: "offering", hoursAgo: 5,
@@ -572,7 +572,7 @@
     dates.textContent = "In progress";
     var note = document.createElement("p");
     note.className = "ember-stay__note";
-    note.textContent = "Your thread writes itself when you check out — who you met, what you built, nothing else.";
+    note.textContent = "When you check out, this stay is saved here as a simple record of the people you met and what you made together.";
     current.appendChild(place);
     current.appendChild(dates);
     current.appendChild(note);
